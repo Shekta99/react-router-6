@@ -1,10 +1,10 @@
 import React from "react";
 
-import { Email } from "./Email";
-import { Programs } from "./Programs";
+import Email from "./Email";
+import Programs from "./Programs";
 import { useParams } from "react-router-dom";
 
-export const About = () => {
+function About() {
   const { id } = useParams();
   return (
     <>
@@ -18,4 +18,5 @@ export const About = () => {
       )}
     </>
   );
-};
+}
+export default About;

@@ -1,7 +1,4 @@
-import React from "react";
-import { Home } from "./components/Home";
-import { About } from "./components/About";
-import { ContactUs } from "./components/ContactUs";
+import React, { Suspense } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,7 +6,11 @@ import {
   Link,
   NavLink,
 } from "react-router-dom";
-import { LinkItem } from "./components/LinkItem";
+import LinkItem from "./components/LinkItem";
+
+const Home = React.lazy(() => import("./components/Home"));
+const About = React.lazy(() => import("./components/About"));
+const ContactUs = React.lazy(() => import("./components/ContactUs"));
 
 function App() {
   return (
@@ -25,24 +26,25 @@ function App() {
         <NavLink to="/contact" activeStyle={{ background: "green" }}>
           <LinkItem name={"Contact Us"} />
         </NavLink>
-
-        <Switch>
-          <Route path={"/about/:id"}>
-            <About />
-          </Route>
-          <Route path={"/home"}>
-            <Home />
-          </Route>
-          <Route path={"/about"}>
-            <About />
-          </Route>
-          <Route path={"/contact/:name"}>
-            <ContactUs />
-          </Route>
-          <Route path={"/"}>
-            <h1>Error 404 page not found</h1>
-          </Route>
-        </Switch>
+        <Suspense fallback={<LinkItem name={"Cargando..."} />}>
+          <Switch>
+            <Route path={"/about/:id"}>
+              <About />
+            </Route>
+            <Route path={"/home"}>
+              <Home />
+            </Route>
+            <Route path={"/about"}>
+              <About />
+            </Route>
+            <Route path={"/contact/:name"}>
+              <ContactUs />
+            </Route>
+            <Route path={"/"}>
+              <h1>Error 404 page not found</h1>
+            </Route>
+          </Switch>
+        </Suspense>
       </Router>
     </div>
   );

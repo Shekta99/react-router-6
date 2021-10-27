@@ -1,5 +1,13 @@
 import React from "react";
+import casa from "../img/casa.jpg";
 
-export const Home = () => {
-  return <h3>Home Page</h3>;
-};
+function Home() {
+  return (
+    <>
+      <h3>Home Page</h3>
+      <img src={casa} alt={"Casa"} />
+    </>
+  );
+}
+
+export default Home;

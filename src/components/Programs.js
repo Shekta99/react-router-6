@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Programs = () => {
+function Programs() {
   return (
     <ol>
       <li>Js</li>
@@ -10,4 +10,6 @@ export const Programs = () => {
       <li>Git</li>
     </ol>
   );
-};
+}
+
+export default Programs;
