@@ -28,9 +28,10 @@ function App() {
         </NavLink>
         <Suspense fallback={<LinkItem name={"Cargando..."} />}>
           <Routes>
-            <Route path={"/about/:id"} element={<About />} />
+            <Route path={"/about"} element={<About />}>
+              <Route path={":id"} element={<About />} />
+            </Route>
             <Route path={"/home"} element={<Home />} />
-            <Route path={"/about"} element={<About />} />
             <Route path={"/contact/:name"} element={<ContactUs />} />
             <Route index element={<h1>Error 404 page not found</h1>} />
           </Routes>
