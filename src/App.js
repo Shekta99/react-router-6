@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   Link,
   NavLink,
@@ -27,23 +27,13 @@ function App() {
           <LinkItem name={"Contact Us"} />
         </NavLink>
         <Suspense fallback={<LinkItem name={"Cargando..."} />}>
-          <Switch>
-            <Route path={"/about/:id"}>
-              <About />
-            </Route>
-            <Route path={"/home"}>
-              <Home />
-            </Route>
-            <Route path={"/about"}>
-              <About />
-            </Route>
-            <Route path={"/contact/:name"}>
-              <ContactUs />
-            </Route>
-            <Route path={"/"}>
-              <h1>Error 404 page not found</h1>
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path={"/about/:id"} element={<About />} />
+            <Route path={"/home"} element={<Home />} />
+            <Route path={"/about"} element={<About />} />
+            <Route path={"/contact/:name"} element={<ContactUs />} />
+            <Route index element={<h1>Error 404 page not found</h1>} />
+          </Routes>
         </Suspense>
       </Router>
     </div>
