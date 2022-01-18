@@ -1,11 +1,5 @@
 import React, { Suspense } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  NavLink,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import LinkItem from "./components/LinkItem";
 
 const Home = React.lazy(() => import("./components/Home"));
@@ -23,16 +17,18 @@ function App() {
         <Link to="/about">
           <LinkItem name={"About us"} />
         </Link>
-        <NavLink to="/contact" activeStyle={{ background: "green" }}>
+        <Link to="/contact">
           <LinkItem name={"Contact Us"} />
-        </NavLink>
+        </Link>
         <Suspense fallback={<LinkItem name={"Cargando..."} />}>
           <Routes>
             <Route path={"/about"} element={<About />}>
               <Route path={":id"} element={<About />} />
             </Route>
             <Route path={"/home"} element={<Home />} />
-            <Route path={"/contact/:name"} element={<ContactUs />} />
+            <Route path={"/contact"} element={<ContactUs />}>
+              <Route path={":name"} element={<ContactUs />} />
+            </Route>
             <Route index element={<h1>Error 404 page not found</h1>} />
           </Routes>
         </Suspense>
